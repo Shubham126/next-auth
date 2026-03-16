@@ -1,15 +1,22 @@
-import { NextResponse } from "next/server";
-import { User } from "./models/User";
-import { connectDB } from "./lib/mongodb";
-import bcrypt from "bcryptjs";
-import { generateToken } from "./utils/auth";
+import mongoose, {Schema, model, models} from "mongoose"
 
-export async function POST(){
-    const response = NextResponse.json({
-        message: "Logged out successfully"
-    })
-
-    response.cookies.set("token", "", {
-        expires: new Date(0)
-    })
+export interface IUser {
+    name: string
+    email: string
+    password: string
 }
+
+const UserSchema = new Schema<Iuser>(
+    {
+        name:{
+            type: String,
+            required: true
+        },
+        email:{
+            type: String,
+            required: true,
+            unique: true
+        }
+        password
+    }
+)
