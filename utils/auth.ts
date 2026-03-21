@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken"
 
-const JWT_TOKEN = process.env.JWT_TOKEN!
+const JWT_SECRET = process.env.JWT_SECRET!
 
 export function generateToken(userId: string){
-    return jwt.sign({id: userId}, JWT_TOKEN, {
+    return jwt.sign({id: userId}, JWT_SECRET, {
         expiresIn: "7d",
     })
 }
